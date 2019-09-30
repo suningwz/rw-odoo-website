@@ -10,20 +10,25 @@ from odoo.addons.web.controllers.main import Home
 class RestrictWebBLog(WebsiteBlog):
     @http.route(auth='user')
     def blog(self, blog=None, tag=None, page=1, **opt):
+        print("PARAMSSSS")
+        print(request)
+        print(blog)
+        print(tag)
         return super(RestrictWebBLog, self).blog(blog, tag, page, **opt)
-
-    @http.route(auth='user')
-    def blog_post(self,blog, blog_post, tag_id=None, page=1, enable_editor=None, **post):
-        return super(RestrictWebBLog, self).blog_post(blog, blog_post, tag_id, page, enable_editor, **post)
 
 class RestrictWebsite(Website):
     @http.route(auth='user')
     def index(self):
         return super(RestrictWebsite, self).index()
 
+class RestrictWeb(Home):
+    @http.route(auth='user')
+    def index(self):
+        return super(RestrictWeb, self).index()
+
 class RestrictForum(WebsiteForum):
     @http.route(auth='user')
-    def forum(self, **kwargs):
-        return super(RestrictForum, self).forum(**kwargs)
+    def forum(self):
+        return super(RestrictForum, self).forum()
 
 
